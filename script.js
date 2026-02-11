@@ -1,5 +1,10 @@
 "use strict";
 
+// =============================================
+// AVES REINALDO - Modern Interactive Script
+// =============================================
+
+// Animal spotlight data
 const animalImages = [
 	{ src: "assets/animais/animal.jpeg", alt: "Ave em destaque" },
 	{ src: "assets/animais/animal1.jpeg", alt: "Reptil em destaque" },
@@ -13,15 +18,88 @@ const animalImages = [
 	{ src: "assets/animais/animal9.jpeg", alt: "Reptil exotico" }
 ];
 
+// DOM Elements
+const nav = document.getElementById("mainNav");
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
 const animalSpotlight = document.getElementById("animalSpotlight");
-const animalThumbs = document.querySelectorAll(".thumb-button");
+const animalThumbs = document.querySelectorAll(".thumb-card");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxClose = document.querySelector(".lightbox-close");
+const lightboxBackdrop = document.querySelector(".lightbox-backdrop");
+const lightboxPrev = document.querySelector(".lightbox-nav.prev");
+const lightboxNext = document.querySelector(".lightbox-nav.next");
+
+// =============================================
+// SCROLL EFFECTS
+// =============================================
+
+let lastScroll = 0;
+
+const handleScroll = () => {
+	const currentScroll = window.scrollY;
+	
+	// Navigation background on scroll
+	if (nav) {
+		nav.classList.toggle("scrolled", currentScroll > 50);
+	}
+	
+	lastScroll = currentScroll;
+};
+
+window.addEventListener("scroll", handleScroll, { passive: true });
+handleScroll();
+
+// =============================================
+// MOBILE NAVIGATION
+// =============================================
+
+if (navToggle && navLinks) {
+	navToggle.addEventListener("click", () => {
+		navLinks.classList.toggle("is-open");
+		navToggle.classList.toggle("is-active");
+	});
+	
+	// Close nav on link click
+	navLinks.querySelectorAll(".nav-link").forEach((link) => {
+		link.addEventListener("click", () => {
+			navLinks.classList.remove("is-open");
+			navToggle.classList.remove("is-active");
+		});
+	});
+}
+
+// =============================================
+// REVEAL ANIMATIONS
+// =============================================
+
+const revealElements = document.querySelectorAll(".reveal-fade");
+
+const revealOnScroll = () => {
+	const windowHeight = window.innerHeight;
+	const revealPoint = 120;
+	
+	revealElements.forEach((el) => {
+		const elementTop = el.getBoundingClientRect().top;
+		
+		if (elementTop < windowHeight - revealPoint) {
+			el.classList.add("is-visible");
+		}
+	});
+};
+
+window.addEventListener("scroll", revealOnScroll, { passive: true });
+window.addEventListener("load", revealOnScroll);
+revealOnScroll();
+
+// =============================================
+// ANIMAL SPOTLIGHT GALLERY
+// =============================================
 
 if (animalSpotlight) {
-	let index = 0;
-	let timerId;
+	let currentIndex = 0;
+	let autoplayTimer;
 
 	const setActiveThumb = (activeIndex) => {
 		animalThumbs.forEach((thumb) => {
@@ -30,89 +108,192 @@ if (animalSpotlight) {
 		});
 	};
 
-	const showImage = (nextIndex) => {
+	const showImage = (nextIndex, animate = true) => {
 		const item = animalImages[nextIndex];
-		animalSpotlight.src = item.src;
-		animalSpotlight.alt = item.alt;
-		setActiveThumb(nextIndex);
-	};
-
-	const transition = () => {
-		animalSpotlight.classList.add("is-transitioning");
-
-		setTimeout(() => {
-			index = (index + 1) % animalImages.length;
-			showImage(index);
-			animalSpotlight.classList.remove("is-transitioning");
-		}, 300);
-	};
-
-	showImage(index);
-	const startTimer = () => {
-		timerId = setInterval(transition, 4200);
-	};
-
-	const resetTimer = () => {
-		if (timerId) {
-			clearInterval(timerId);
+		
+		if (animate) {
+			animalSpotlight.classList.add("is-transitioning");
+			
+			setTimeout(() => {
+				animalSpotlight.src = item.src;
+				animalSpotlight.alt = item.alt;
+				setActiveThumb(nextIndex);
+				animalSpotlight.classList.remove("is-transitioning");
+			}, 300);
+		} else {
+			animalSpotlight.src = item.src;
+			animalSpotlight.alt = item.alt;
+			setActiveThumb(nextIndex);
 		}
-		startTimer();
 	};
 
+	const nextImage = () => {
+		currentIndex = (currentIndex + 1) % animalImages.length;
+		showImage(currentIndex);
+	};
+
+	const startAutoplay = () => {
+		autoplayTimer = setInterval(nextImage, 4500);
+	};
+
+	const resetAutoplay = () => {
+		clearInterval(autoplayTimer);
+		startAutoplay();
+	};
+
+	// Initialize
+	showImage(currentIndex, false);
+	startAutoplay();
+
+	// Thumbnail clicks
 	animalThumbs.forEach((thumb) => {
 		thumb.addEventListener("click", () => {
-			index = Number(thumb.dataset.animalIndex) || 0;
-			showImage(index);
-			resetTimer();
+			currentIndex = Number(thumb.dataset.animalIndex) || 0;
+			showImage(currentIndex);
+			resetAutoplay();
 		});
 	});
-
-	startTimer();
 }
 
+// =============================================
+// LIGHTBOX
+// =============================================
+
+let lightboxImages = [];
+let currentLightboxIndex = 0;
+
+const collectLightboxImages = () => {
+	lightboxImages = Array.from(document.querySelectorAll("[data-lightbox]"));
+};
+
 const openLightbox = (image) => {
-	if (!lightbox || !lightboxImage) {
-		return;
-	}
+	if (!lightbox || !lightboxImage) return;
+	
+	collectLightboxImages();
+	currentLightboxIndex = lightboxImages.indexOf(image);
+	
 	lightboxImage.src = image.src;
 	lightboxImage.alt = image.alt;
 	lightbox.classList.add("is-open");
 	lightbox.setAttribute("aria-hidden", "false");
+	document.body.style.overflow = "hidden";
+	
+	updateLightboxNav();
 };
 
 const closeLightbox = () => {
-	if (!lightbox) {
-		return;
-	}
+	if (!lightbox) return;
+	
 	lightbox.classList.remove("is-open");
 	lightbox.setAttribute("aria-hidden", "true");
+	document.body.style.overflow = "";
 };
 
+const navigateLightbox = (direction) => {
+	if (lightboxImages.length === 0) return;
+	
+	currentLightboxIndex += direction;
+	
+	if (currentLightboxIndex < 0) {
+		currentLightboxIndex = lightboxImages.length - 1;
+	} else if (currentLightboxIndex >= lightboxImages.length) {
+		currentLightboxIndex = 0;
+	}
+	
+	const image = lightboxImages[currentLightboxIndex];
+	lightboxImage.src = image.src;
+	lightboxImage.alt = image.alt;
+	
+	updateLightboxNav();
+};
+
+const updateLightboxNav = () => {
+	// Show/hide nav buttons based on image count
+	const hasMultiple = lightboxImages.length > 1;
+	if (lightboxPrev) lightboxPrev.style.display = hasMultiple ? "flex" : "none";
+	if (lightboxNext) lightboxNext.style.display = hasMultiple ? "flex" : "none";
+};
+
+// Lightbox event listeners
 document.addEventListener("click", (event) => {
 	const target = event.target;
-	if (!(target instanceof Element)) {
-		return;
-	}
+	if (!(target instanceof Element)) return;
+	
 	const image = target.closest("[data-lightbox]");
 	if (image instanceof HTMLImageElement) {
 		openLightbox(image);
 	}
 });
 
-if (lightbox) {
-	lightbox.addEventListener("click", (event) => {
-		if (event.target === lightbox) {
-			closeLightbox();
-		}
-	});
+if (lightboxBackdrop) {
+	lightboxBackdrop.addEventListener("click", closeLightbox);
 }
 
 if (lightboxClose) {
 	lightboxClose.addEventListener("click", closeLightbox);
 }
 
+if (lightboxPrev) {
+	lightboxPrev.addEventListener("click", () => navigateLightbox(-1));
+}
+
+if (lightboxNext) {
+	lightboxNext.addEventListener("click", () => navigateLightbox(1));
+}
+
 document.addEventListener("keydown", (event) => {
-	if (event.key === "Escape") {
-		closeLightbox();
+	if (!lightbox?.classList.contains("is-open")) return;
+	
+	switch (event.key) {
+		case "Escape":
+			closeLightbox();
+			break;
+		case "ArrowLeft":
+			navigateLightbox(-1);
+			break;
+		case "ArrowRight":
+			navigateLightbox(1);
+			break;
 	}
 });
+
+// =============================================
+// SMOOTH SCROLL FOR NAV LINKS
+// =============================================
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+	anchor.addEventListener("click", function (e) {
+		const targetId = this.getAttribute("href");
+		if (targetId === "#") return;
+		
+		const targetElement = document.querySelector(targetId);
+		if (targetElement) {
+			e.preventDefault();
+			const navHeight = nav?.offsetHeight || 0;
+			const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+			
+			window.scrollTo({
+				top: targetPosition,
+				behavior: "smooth"
+			});
+		}
+	});
+});
+
+// =============================================
+// PARALLAX EFFECTS (Optional subtle movement)
+// =============================================
+
+const heroContent = document.querySelector(".hero-content");
+
+if (heroContent) {
+	window.addEventListener("scroll", () => {
+		const scrolled = window.scrollY;
+		const rate = scrolled * 0.3;
+		
+		if (scrolled < window.innerHeight) {
+			heroContent.style.transform = `translateY(${rate}px)`;
+			heroContent.style.opacity = 1 - scrolled / (window.innerHeight * 0.8);
+		}
+	}, { passive: true });
+}

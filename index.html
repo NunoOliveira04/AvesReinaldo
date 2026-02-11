@@ -11,177 +11,361 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Sans+3:wght@300;400;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-		<header>
-			<div class="container nav">
+		<!-- Floating Navigation -->
+		<header class="glass-nav" id="mainNav">
+			<div class="nav-container">
 				<a class="brand" href="#inicio">
 					<img src="assets/logo.png" alt="Aves Reinaldo" class="logo" />
-					<span>Aves Reinaldo</span>
+					<div class="brand-text">
+						<span class="brand-name">Aves Reinaldo</span>
+						<span class="brand-tagline">Loja de Animais</span>
+					</div>
 				</a>
-				<nav class="nav-links">
-					<a href="#inicio">Início</a>
-					<a href="#animais">Animais</a>
-					<a href="#loja">Loja</a>
-					<a href="#contatos">Contatos</a>
+				<button class="nav-toggle" id="navToggle" aria-label="Menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<nav class="nav-links" id="navLinks">
+					<a href="#inicio" class="nav-link">Início</a>
+					<a href="#animais" class="nav-link">Animais</a>
+					<a href="#loja" class="nav-link">Loja</a>
+					<a href="#contatos" class="nav-link cta-nav">Contatos</a>
 				</nav>
 			</div>
 		</header>
 
 		<main>
-			<section class="hero-video" id="inicio">
+			<!-- Hero Section -->
+			<section class="hero" id="inicio">
 				<video
-					class="hero-video__media"
+					class="hero-video"
 					src="assets/animais/Araras_e_Papagaios_em_Vídeo_Realista.mp4"
 					autoplay
 					muted
 					loop
 					playsinline
 				></video>
-				<div class="hero-video__overlay">
-					<div class="container">
-						<p class="hero-video__eyebrow">Aves, repteis e companhia</p>
-						<h1>Especialistas em cuidados e bem-estar animal.</h1>
-						<p>
-							Ambiente local e atendimento proximo, com foco em aves e especies
-							selecionadas com responsabilidade.
-						</p>
-						<a class="cta" href="#contatos">Fale connosco</a>
+				<div class="hero-overlay"></div>
+				<div class="hero-content">
+					<div class="hero-badge reveal-fade">
+						<span class="pulse-dot"></span>
+						Aves, Répteis & Companhia
 					</div>
-				</div>
-			</section>
-
-			<section id="animais" class="animals">
-				<div class="container">
-					<h2>Animais em destaque</h2>
-					<p>
-						Selecao de aves, repteis e outras especies disponiveis e cuidadas
-						com atencao especializada.
+					<h1 class="hero-title reveal-fade">
+						Especialistas em<br />
+						<span class="gradient-text">cuidados animais</span>
+					</h1>
+					<p class="hero-subtitle reveal-fade">
+						Ambiente local e atendimento próximo, com foco em aves e espécies
+						selecionadas com responsabilidade.
 					</p>
-					<div class="animals-spotlight" aria-live="polite">
-						<img
-							id="animalSpotlight"
-							src="assets/animais/animal.jpeg"
-							alt="Ave em destaque"
-							data-lightbox
-						/>
+					<div class="hero-buttons reveal-fade">
+						<a class="btn btn-primary" href="#animais">
+							<span>Explorar</span>
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M5 12h14M12 5l7 7-7 7"/>
+							</svg>
+						</a>
+						<a class="btn btn-glass" href="#contatos">Fale Connosco</a>
 					</div>
-					<div class="animals-thumbs" aria-label="Galeria de animais">
-						<button class="thumb-button" data-animal-index="0">
-							<img src="assets/animais/animal.jpeg" alt="Ave em destaque" />
-						</button>
-						<button class="thumb-button" data-animal-index="1">
-							<img src="assets/animais/animal1.jpeg" alt="Reptil em destaque" />
-						</button>
-						<button class="thumb-button" data-animal-index="2">
-							<img src="assets/animais/animal2.jpeg" alt="Ave em loja" />
-						</button>
-						<button class="thumb-button" data-animal-index="3">
-							<img src="assets/animais/animal3.jpeg" alt="Reptil em loja" />
-						</button>
-						<button class="thumb-button" data-animal-index="4">
-							<img src="assets/animais/animal4.jpeg" alt="Ave em cuidado" />
-						</button>
-						<button class="thumb-button" data-animal-index="5">
-							<img src="assets/animais/animal5.jpeg" alt="Reptil em cuidado" />
-						</button>
-						<button class="thumb-button" data-animal-index="6">
-							<img src="assets/animais/animal6.jpeg" alt="Ave colorida" />
-						</button>
-						<button class="thumb-button" data-animal-index="7">
-							<img src="assets/animais/animal7.jpeg" alt="Animal em terrario" />
-						</button>
-						<button class="thumb-button" data-animal-index="8">
-							<img src="assets/animais/animal8.jpeg" alt="Ave exotica" />
-						</button>
-						<button class="thumb-button" data-animal-index="9">
-							<img src="assets/animais/animal9.jpeg" alt="Reptil exotico" />
-						</button>
+				</div>
+				<div class="scroll-indicator">
+					<div class="scroll-mouse">
+						<div class="scroll-wheel"></div>
 					</div>
+					<span>Scroll</span>
 				</div>
 			</section>
 
-			<section id="loja" class="store-gallery" aria-label="Fotos da loja">
+			<!-- Animals Section -->
+			<section id="animais" class="section animals-section">
 				<div class="container">
-					<h2>A nossa loja</h2>
-					<div class="store-description">
-						<p>
-							Loja de animais localizada no Mercado Municipal de Guimarães,
-							especializada na venda de aves e peixes, bem como em ração,
-							alimentação, acessórios e produtos para animais de estimação.
-							Oferecemos atendimento próximo e personalizado, com foco no bem-estar
-							e cuidado dos animais. Fácil acesso, ambiente de confiança e produtos
-							de qualidade.
+					<div class="section-header">
+						<span class="section-badge reveal-fade">Galeria</span>
+						<h2 class="section-title reveal-fade">Animais em Destaque</h2>
+						<p class="section-subtitle reveal-fade">
+							Seleção de aves, répteis e outras espécies disponíveis e cuidadas
+							com atenção especializada.
 						</p>
 					</div>
-					<div class="store-showcase">
-						<img
-							class="store-feature"
-							src="assets/loja/loja.jpeg"
-							alt="Loja Aves Reinaldo"
-							data-lightbox
-						/>
-						<img src="assets/loja/loja1.jpeg" alt="Loja Aves Reinaldo 1" data-lightbox />
-						<img src="assets/loja/loja2.jpeg" alt="Loja Aves Reinaldo 2" data-lightbox />
-						<img src="assets/loja/loja3.jpeg" alt="Loja Aves Reinaldo 3" data-lightbox />
-						<img src="assets/loja/loja4.jpeg" alt="Loja Aves Reinaldo 4" data-lightbox />
-						<img src="assets/loja/loja5.jpeg" alt="Loja Aves Reinaldo 5" data-lightbox />
+					
+					<div class="animals-gallery reveal-fade">
+						<div class="spotlight-wrapper">
+							<div class="spotlight-frame">
+								<img
+									id="animalSpotlight"
+									src="assets/animais/animal.jpeg"
+									alt="Ave em destaque"
+									data-lightbox
+								/>
+								<div class="spotlight-glow"></div>
+							</div>
+						</div>
+						
+						<div class="thumbs-carousel">
+							<div class="thumbs-track" aria-label="Galeria de animais">
+								<button class="thumb-card" data-animal-index="0">
+									<img src="assets/animais/animal.jpeg" alt="Ave em destaque" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="1">
+									<img src="assets/animais/animal1.jpeg" alt="Reptil em destaque" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="2">
+									<img src="assets/animais/animal2.jpeg" alt="Ave em loja" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="3">
+									<img src="assets/animais/animal3.jpeg" alt="Reptil em loja" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="4">
+									<img src="assets/animais/animal4.jpeg" alt="Ave em cuidado" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="5">
+									<img src="assets/animais/animal5.jpeg" alt="Reptil em cuidado" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="6">
+									<img src="assets/animais/animal6.jpeg" alt="Ave colorida" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="7">
+									<img src="assets/animais/animal7.jpeg" alt="Animal em terrario" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="8">
+									<img src="assets/animais/animal8.jpeg" alt="Ave exotica" />
+									<div class="thumb-overlay"></div>
+								</button>
+								<button class="thumb-card" data-animal-index="9">
+									<img src="assets/animais/animal9.jpeg" alt="Reptil exotico" />
+									<div class="thumb-overlay"></div>
+								</button>
+							</div>
+						</div>
 					</div>
-					<div class="hours store-hours">
-						<p class="hours-title">Horário</p>
-						<ul>
-							<li><span>Segunda-feira</span><span>09:00-12:00</span></li>
-							<li><span>Terça-feira</span><span>09:00-12:00, 14:00-17:00</span></li>
-							<li><span>Quarta-feira</span><span>09:00-12:00, 14:00-17:00</span></li>
-							<li><span>Sexta-feira</span><span>09:00-12:00, 14:00-17:00</span></li>
-							<li><span>Sábado</span><span>07:00-12:30</span></li>
-							<li><span>Domingo</span><span>Fechado</span></li>
-						</ul>
+				</div>
+				<div class="section-bg-shape"></div>
+			</section>
+
+			<!-- Store Section -->
+			<section id="loja" class="section store-section">
+				<div class="container">
+					<div class="store-layout">
+						<div class="store-info reveal-fade">
+							<span class="section-badge">A Nossa Loja</span>
+							<h2 class="section-title">Mercado Municipal<br/>de Guimarães</h2>
+							<p class="store-description">
+								Loja de animais especializada na venda de aves e peixes, bem como em ração,
+								alimentação, acessórios e produtos para animais de estimação.
+								Oferecemos atendimento próximo e personalizado, com foco no bem-estar
+								e cuidado dos animais.
+							</p>
+							
+							<div class="info-cards">
+								<div class="info-card">
+									<div class="info-icon">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<circle cx="12" cy="12" r="10"/>
+											<path d="M12 6v6l4 2"/>
+										</svg>
+									</div>
+									<div class="info-content">
+										<h4>Horário</h4>
+										<div class="hours-grid">
+											<span>Segunda-feira</span><span>09:00 - 12:00</span>
+											<span>Terça-feira</span><span>09:00 - 12:00, 14:00 - 17:00</span>
+											<span>Quarta-feira</span><span>09:00 - 12:00, 14:00 - 17:00</span>
+											<span>Quinta-feira</span><span>09:00 - 12:00, 14:00 - 17:00</span>
+											<span>Sexta-feira</span><span>09:00 - 12:00, 14:00 - 17:00</span>
+											<span>Sábado</span><span>07:00 - 12:30</span>
+											<span>Domingo</span><span class="closed">Fechado</span>
+										</div>
+									</div>
+								</div>
+								
+								<div class="info-card">
+									<div class="info-icon">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+											<circle cx="12" cy="10" r="3"/>
+										</svg>
+									</div>
+									<div class="info-content">
+										<h4>Localização</h4>
+										<p>Mercado Municipal de Guimarães<br/>Fácil acesso e estacionamento</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="store-gallery reveal-fade">
+							<div class="gallery-grid">
+								<div class="gallery-item large">
+									<img src="assets/loja/loja.jpeg" alt="Loja Aves Reinaldo" data-lightbox />
+									<div class="gallery-overlay">
+										<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+											<path d="M11 8v6M8 11h6"/>
+										</svg>
+									</div>
+								</div>
+								<div class="gallery-item">
+									<img src="assets/loja/loja1.jpeg" alt="Loja Aves Reinaldo 1" data-lightbox />
+									<div class="gallery-overlay">
+										<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+											<path d="M11 8v6M8 11h6"/>
+										</svg>
+									</div>
+								</div>
+								<div class="gallery-item">
+									<img src="assets/loja/loja2.jpeg" alt="Loja Aves Reinaldo 2" data-lightbox />
+									<div class="gallery-overlay">
+										<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+											<path d="M11 8v6M8 11h6"/>
+										</svg>
+									</div>
+								</div>
+								<div class="gallery-item">
+									<img src="assets/loja/loja3.jpeg" alt="Loja Aves Reinaldo 3" data-lightbox />
+									<div class="gallery-overlay">
+										<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+											<path d="M11 8v6M8 11h6"/>
+										</svg>
+									</div>
+								</div>
+								<div class="gallery-item">
+									<img src="assets/loja/loja4.jpeg" alt="Loja Aves Reinaldo 4" data-lightbox />
+									<div class="gallery-overlay">
+										<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+											<path d="M11 8v6M8 11h6"/>
+										</svg>
+									</div>
+								</div>
+								<div class="gallery-item">
+									<img src="assets/loja/loja5.jpeg" alt="Loja Aves Reinaldo 5" data-lightbox />
+									<div class="gallery-overlay">
+										<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+											<path d="M11 8v6M8 11h6"/>
+										</svg>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="contatos">
+			<!-- Contact Section -->
+			<section id="contatos" class="section contact-section">
 				<div class="container">
-					<h2>Contatos</h2>
-					<div class="contact-box">
-						<div class="contact-row">
-							<span class="contact-label">📞 Telefone:</span>
-							<span class="contact-value">967084894</span>
+					<div class="contact-wrapper">
+						<div class="contact-header reveal-fade">
+							<span class="section-badge">Contacte-nos</span>
+							<h2 class="section-title">Fale Connosco</h2>
+							<p class="section-subtitle">
+								Estamos disponíveis para esclarecer dúvidas e ajudar no que precisar.
+							</p>
 						</div>
-						<div class="contact-row">
-							<span class="contact-label">✉️ Email:</span>
-							<span class="contact-value">passarosreinaldo@hotmail.com</span>
-						</div>
-						<div class="contact-row">
-							<span class="contact-label">💬 WhatsApp:</span>
-							<a
-								class="whatsapp-button"
-								href="https://wa.me/351967084894"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Abrir conversa
+						
+						<div class="contact-cards reveal-fade">
+							<a href="tel:+351967084894" class="contact-card">
+								<div class="contact-icon phone">
+									<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+									</svg>
+								</div>
+								<div class="contact-info">
+									<span class="contact-label">Telefone</span>
+									<span class="contact-value">967 084 894</span>
+								</div>
+								<span class="contact-arrow">→</span>
+							</a>
+							
+							<a href="mailto:passarosreinaldo@hotmail.com" class="contact-card email-card">
+								<div class="contact-icon email">
+									<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<rect x="2" y="4" width="20" height="16" rx="2"/>
+										<path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/>
+									</svg>
+								</div>
+								<div class="contact-info">
+									<span class="contact-label">Email</span>
+									<span class="contact-value">passarosreinaldo@hotmail.com</span>
+								</div>
+								<span class="contact-arrow">→</span>
+							</a>
+							
+							<a href="https://wa.me/351967084894" target="_blank" rel="noopener noreferrer" class="contact-card whatsapp">
+								<div class="contact-icon whatsapp-icon">
+									<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+										<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+									</svg>
+								</div>
+								<div class="contact-info">
+									<span class="contact-label">WhatsApp</span>
+									<span class="contact-value">Iniciar conversa</span>
+								</div>
+								<span class="contact-arrow">→</span>
 							</a>
 						</div>
 					</div>
 				</div>
+				<div class="contact-bg-gradient"></div>
 			</section>
 		</main>
 
-		<footer class="container">
-			<p>© 2026 Aves Reinaldo. Todos os direitos reservados.</p>
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-content">
+					<div class="footer-brand">
+						<img src="assets/logo.png" alt="Aves Reinaldo" class="footer-logo" />
+						<span>Aves Reinaldo</span>
+					</div>
+					<p class="footer-copy">© 2026 Aves Reinaldo. Todos os direitos reservados.</p>
+				</div>
+			</div>
 		</footer>
+
+		<!-- Lightbox -->
 		<div class="lightbox" id="lightbox" aria-hidden="true">
+			<div class="lightbox-backdrop"></div>
 			<button class="lightbox-close" type="button" aria-label="Fechar imagem">
-				×
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M18 6L6 18M6 6l12 12"/>
+				</svg>
 			</button>
-			<img id="lightboxImage" alt="" />
+			<div class="lightbox-content">
+				<img id="lightboxImage" alt="" />
+			</div>
+			<button class="lightbox-nav prev" type="button" aria-label="Anterior">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M15 18l-6-6 6-6"/>
+				</svg>
+			</button>
+			<button class="lightbox-nav next" type="button" aria-label="Próximo">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M9 18l6-6-6-6"/>
+				</svg>
+			</button>
 		</div>
+
 		<script src="script.js"></script>
 	</body>
 </html>
