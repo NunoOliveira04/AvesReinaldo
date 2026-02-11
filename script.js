@@ -297,3 +297,64 @@ if (heroContent) {
 		}
 	}, { passive: true });
 }
+
+// =============================================
+// MOBILE NAVIGATION ACTIVE STATE
+// =============================================
+
+const mobileNavItems = document.querySelectorAll(".mobile-nav-item");
+const sections = document.querySelectorAll("section[id]");
+
+const updateMobileNavActive = () => {
+	const scrollY = window.scrollY;
+	const windowHeight = window.innerHeight;
+	
+	sections.forEach((section) => {
+		const sectionTop = section.offsetTop - 150;
+		const sectionHeight = section.offsetHeight;
+		const sectionId = section.getAttribute("id");
+		
+		if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+			mobileNavItems.forEach((item) => {
+				item.classList.remove("active");
+				if (item.getAttribute("href") === `#${sectionId}`) {
+					item.classList.add("active");
+				}
+			});
+		}
+	});
+};
+
+window.addEventListener("scroll", updateMobileNavActive, { passive: true });
+updateMobileNavActive();
+
+// =============================================
+// TOUCH SWIPE FOR LIGHTBOX
+// =============================================
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+const handleSwipe = () => {
+	const threshold = 50;
+	const diff = touchStartX - touchEndX;
+	
+	if (Math.abs(diff) > threshold) {
+		if (diff > 0) {
+			navigateLightbox(1); // Swipe left = next
+		} else {
+			navigateLightbox(-1); // Swipe right = prev
+		}
+	}
+};
+
+if (lightbox) {
+	lightbox.addEventListener("touchstart", (e) => {
+		touchStartX = e.changedTouches[0].screenX;
+	}, { passive: true });
+	
+	lightbox.addEventListener("touchend", (e) => {
+		touchEndX = e.changedTouches[0].screenX;
+		handleSwipe();
+	}, { passive: true });
+}
