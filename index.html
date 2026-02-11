@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Aves Reinaldo | Loja de Animais</title>
+		<meta
+			name="description"
+			content="Loja de animais local em Portugal com foco em aves, alimentação e acessórios."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Sans+3:wght@300;400;600&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<header>
+			<div class="container nav">
+				<a class="brand" href="#inicio">
+					<img src="assets/logo.png" alt="Aves Reinaldo" class="logo" />
+					<span>Aves Reinaldo</span>
+				</a>
+				<nav class="nav-links">
+					<a href="#inicio">Início</a>
+					<a href="#animais">Animais</a>
+					<a href="#loja">Loja</a>
+					<a href="#contatos">Contatos</a>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<section class="hero-video" id="inicio">
+				<video
+					class="hero-video__media"
+					src="assets/animais/Araras_e_Papagaios_em_Vídeo_Realista.mp4"
+					autoplay
+					muted
+					loop
+					playsinline
+				></video>
+				<div class="hero-video__overlay">
+					<div class="container">
+						<p class="hero-video__eyebrow">Aves, repteis e companhia</p>
+						<h1>Especialistas em cuidados e bem-estar animal.</h1>
+						<p>
+							Ambiente local e atendimento proximo, com foco em aves e especies
+							selecionadas com responsabilidade.
+						</p>
+						<a class="cta" href="#contatos">Fale connosco</a>
+					</div>
+				</div>
+			</section>
+
+			<section id="animais" class="animals">
+				<div class="container">
+					<h2>Animais em destaque</h2>
+					<p>
+						Selecao de aves, repteis e outras especies disponiveis e cuidadas
+						com atencao especializada.
+					</p>
+					<div class="animals-spotlight" aria-live="polite">
+						<img
+							id="animalSpotlight"
+							src="assets/animais/animal.jpeg"
+							alt="Ave em destaque"
+							data-lightbox
+						/>
+					</div>
+					<div class="animals-thumbs" aria-label="Galeria de animais">
+						<button class="thumb-button" data-animal-index="0">
+							<img src="assets/animais/animal.jpeg" alt="Ave em destaque" />
+						</button>
+						<button class="thumb-button" data-animal-index="1">
+							<img src="assets/animais/animal1.jpeg" alt="Reptil em destaque" />
+						</button>
+						<button class="thumb-button" data-animal-index="2">
+							<img src="assets/animais/animal2.jpeg" alt="Ave em loja" />
+						</button>
+						<button class="thumb-button" data-animal-index="3">
+							<img src="assets/animais/animal3.jpeg" alt="Reptil em loja" />
+						</button>
+						<button class="thumb-button" data-animal-index="4">
+							<img src="assets/animais/animal4.jpeg" alt="Ave em cuidado" />
+						</button>
+						<button class="thumb-button" data-animal-index="5">
+							<img src="assets/animais/animal5.jpeg" alt="Reptil em cuidado" />
+						</button>
+						<button class="thumb-button" data-animal-index="6">
+							<img src="assets/animais/animal6.jpeg" alt="Ave colorida" />
+						</button>
+						<button class="thumb-button" data-animal-index="7">
+							<img src="assets/animais/animal7.jpeg" alt="Animal em terrario" />
+						</button>
+						<button class="thumb-button" data-animal-index="8">
+							<img src="assets/animais/animal8.jpeg" alt="Ave exotica" />
+						</button>
+						<button class="thumb-button" data-animal-index="9">
+							<img src="assets/animais/animal9.jpeg" alt="Reptil exotico" />
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<section id="loja" class="store-gallery" aria-label="Fotos da loja">
+				<div class="container">
+					<h2>A nossa loja</h2>
+					<div class="store-description">
+						<p>
+							Loja de animais localizada no Mercado Municipal de Guimarães,
+							especializada na venda de aves e peixes, bem como em ração,
+							alimentação, acessórios e produtos para animais de estimação.
+							Oferecemos atendimento próximo e personalizado, com foco no bem-estar
+							e cuidado dos animais. Fácil acesso, ambiente de confiança e produtos
+							de qualidade.
+						</p>
+					</div>
+					<div class="store-showcase">
+						<img
+							class="store-feature"
+							src="assets/loja/loja.jpeg"
+							alt="Loja Aves Reinaldo"
+							data-lightbox
+						/>
+						<img src="assets/loja/loja1.jpeg" alt="Loja Aves Reinaldo 1" data-lightbox />
+						<img src="assets/loja/loja2.jpeg" alt="Loja Aves Reinaldo 2" data-lightbox />
+						<img src="assets/loja/loja3.jpeg" alt="Loja Aves Reinaldo 3" data-lightbox />
+						<img src="assets/loja/loja4.jpeg" alt="Loja Aves Reinaldo 4" data-lightbox />
+						<img src="assets/loja/loja5.jpeg" alt="Loja Aves Reinaldo 5" data-lightbox />
+					</div>
+					<div class="hours store-hours">
+						<p class="hours-title">Horário</p>
+						<ul>
+							<li><span>Segunda-feira</span><span>09:00-12:00</span></li>
+							<li><span>Terça-feira</span><span>09:00-12:00, 14:00-17:00</span></li>
+							<li><span>Quarta-feira</span><span>09:00-12:00, 14:00-17:00</span></li>
+							<li><span>Sexta-feira</span><span>09:00-12:00, 14:00-17:00</span></li>
+							<li><span>Sábado</span><span>07:00-12:30</span></li>
+							<li><span>Domingo</span><span>Fechado</span></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section id="contatos">
+				<div class="container">
+					<h2>Contatos</h2>
+					<div class="contact-box">
+						<div class="contact-row">
+							<span class="contact-label">📞 Telefone:</span>
+							<span class="contact-value">967084894</span>
+						</div>
+						<div class="contact-row">
+							<span class="contact-label">✉️ Email:</span>
+							<span class="contact-value">passarosreinaldo@hotmail.com</span>
+						</div>
+						<div class="contact-row">
+							<span class="contact-label">💬 WhatsApp:</span>
+							<a
+								class="whatsapp-button"
+								href="https://wa.me/351967084894"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Abrir conversa
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="container">
+			<p>© 2026 Aves Reinaldo. Todos os direitos reservados.</p>
+		</footer>
+		<div class="lightbox" id="lightbox" aria-hidden="true">
+			<button class="lightbox-close" type="button" aria-label="Fechar imagem">
+				×
+			</button>
+			<img id="lightboxImage" alt="" />
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>
